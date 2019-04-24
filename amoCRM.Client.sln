@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "amoCRM.Library", "amoCRM.Library\amoCRM.Library.csproj", "{FEE04FF6-B1AC-400A-BD35-023B55F80E03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "amoCRM.Client", "amoCRM.Client\amoCRM.Client.csproj", "{7A97EB71-F112-4715-B843-73B13604F75E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1B97A496-3F42-4DEF-BC51-75A9BC3E83DF}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		.vsconfig = .vsconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEE04FF6-B1AC-400A-BD35-023B55F80E03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEE04FF6-B1AC-400A-BD35-023B55F80E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEE04FF6-B1AC-400A-BD35-023B55F80E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEE04FF6-B1AC-400A-BD35-023B55F80E03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A97EB71-F112-4715-B843-73B13604F75E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A97EB71-F112-4715-B843-73B13604F75E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A97EB71-F112-4715-B843-73B13604F75E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A97EB71-F112-4715-B843-73B13604F75E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {77837723-1A16-49A9-A11A-34E787CA5B7F}
+	EndGlobalSection
+EndGlobal
