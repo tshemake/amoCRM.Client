@@ -53,5 +53,11 @@ namespace amoCRM.Library
             var requset = new RequestGetLeads(HttpClient);
             return await requset.SendAsync();
         }
+
+        public async Task<Response<ReadOnlyCollection<Company>>> GetCompaniesAsync()
+        {
+            var requset = new RequestGetCompanies(HttpClient);
+            return await requset.SendAsync();
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace amoCRM.Library.Helpers
         public const string AUTH = PRIVATE_API_SUFFIX + "/auth.php?type=json";
         public const string GET_CURRENT_ACCOUNT = PRIVATE_API_VERSION_SUFFIX + "/json/accounts/current";
         public const string GET_LEADS = PRIVATE_API_VERSION_SUFFIX + "/json/leads";
+        public const string GET_COMPANIES = PRIVATE_API_VERSION_SUFFIX + "/json/companies";
 
         public const string FORM_USER_LOGIN = "USER_LOGIN";
         public const string FORM_USER_HASH = "USER_HASH";

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using amoCRM.Library.Core.Types;
 using Newtonsoft.Json;
@@ -47,10 +48,7 @@ namespace amoCRM.Library.Core.Objects
         [JsonProperty(PropertyName = "is_visible")]
         public bool IsVisible { get; set; }
 
-        /// <summary>
-        /// Значения списка, существует в случае, если значение is_multiple равно истине.
-        /// </summary>
-        [JsonProperty(PropertyName = "enums")]
-        public object Enums { get; set; }
+        [JsonProperty(PropertyName = "values")]
+        public ReadOnlyCollection<ValueField> Values { get; set; }
     }
 }
