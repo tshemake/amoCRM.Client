@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -44,6 +45,12 @@ namespace amoCRM.Library
         public async Task<Response<Core.Objects.Account>> GetCurrentAccountAsync()
         {
             var requset = new RequestGetCurrentAccount(HttpClient);
+            return await requset.SendAsync();
+        }
+
+        public async Task<Response<ReadOnlyCollection<Lead>>> GetLeadsAsync()
+        {
+            var requset = new RequestGetLeads(HttpClient);
             return await requset.SendAsync();
         }
     }

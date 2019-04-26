@@ -99,7 +99,7 @@ namespace amoCRM.Library.Responses
                 });
         }
 
-        public static ErrorInfo Get(RequestType requestType, string errorCode, HttpStatusCode httpStatusCode)
+        public static ErrorInfo Get(RequestType requestType, string errorCode, HttpStatusCode httpStatusCode = default)
         {
             var errorInfos = ErrorInfos.Where(info => info.RequestType == requestType && info.Code == errorCode);
             if (httpStatusCode != default)

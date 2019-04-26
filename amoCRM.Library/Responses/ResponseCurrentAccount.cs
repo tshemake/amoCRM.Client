@@ -11,13 +11,9 @@ namespace amoCRM.Library.Responses
     {
     }
 
-    public class CurrentAccount
+    public class CurrentAccount : ApiResult
     {
         [JsonProperty(PropertyName = "account")]
         public Core.Objects.Account Account { get; set; }
-
-        [JsonConverter(typeof(UnixDateTimeConverter))]
-        [JsonProperty(PropertyName = "server_time")]
-        public DateTime ServerTime { get; set; }
     }
 }
