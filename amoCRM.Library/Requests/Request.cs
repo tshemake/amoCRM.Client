@@ -13,7 +13,9 @@ namespace amoCRM.Library.Requests
 
         public abstract Task<Response<TResult>> SendAsync();
 
-        public abstract void OnError(Response<TResult> response);
+        public virtual void OnError(Response<TResult> response)
+        {
+        }
 
         public virtual void ThrowIfHasException(Response<TResult> response)
         {

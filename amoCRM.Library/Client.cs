@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using amoCRM.Library.Core.Objects;
+using amoCRM.Library.Helpers;
 using amoCRM.Library.Requests;
 using amoCRM.Library.Responses;
 using Newtonsoft.Json;
@@ -28,7 +29,7 @@ namespace amoCRM.Library
         public Client(Account account)
         {
             Account = account;
-            BaseAddress = $"https://{account.SubDomain}.amocrm.ru";
+            BaseAddress = string.Format(ApiConstants.API_URL, account.SubDomain);
             var cookieContainer = new CookieContainer();
             var handler = new HttpClientHandler() { CookieContainer = cookieContainer };
             HttpClient = new HttpClient(handler) { BaseAddress = new Uri(BaseAddress) };
@@ -37,6 +38,12 @@ namespace amoCRM.Library
         public async Task<Response<Core.Objects.Authorization>> AuthAsync() 
         {
             var requset = new RequestAuthorization(HttpClient, Account);
+            return await requset.SendAsync();
+        }
+
+        public async Task<Response<Core.Objects.Account>> GetCurrentAccountAsync()
+        {
+            var requset = new RequestGetCurrentAccount(HttpClient);
             return await requset.SendAsync();
         }
     }

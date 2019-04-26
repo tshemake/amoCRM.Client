@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace amoCRM.Library.Requests
 {
-    public class RequestApi
+    public class ApiRequest
     {
         public Dictionary<string, string> _defaultHeaders = new Dictionary<string, string>
         {

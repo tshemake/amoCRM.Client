@@ -9,9 +9,7 @@ namespace amoCRM.Library.Helpers
 {
     public class Api
     {
-        public Api()
-        {
-        }
+        public Api() { }
 
         public string Get(QueryParameter param)
         {

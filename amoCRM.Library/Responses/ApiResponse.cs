@@ -6,7 +6,9 @@ using Newtonsoft.Json;
 
 namespace amoCRM.Library.Responses
 {
-    public class ResponseAuthorization : ApiResponse<Authorization>
+    public class ApiResponse<TResult>
     {
+        [JsonProperty(PropertyName = "response")]
+        public TResult Response { get; set; }
     }
 }

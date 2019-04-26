@@ -17,7 +17,7 @@ namespace amoCRM.Library.Responses
             ErrorInfos = new ReadOnlyCollection<ErrorInfo>(
                 new List<ErrorInfo>
                 {
-                    new ErrorInfo { Code = "111", RequestType = Requests.RequestType.Authorization, Message = "Общая ошибка авторизации. Неправильный логин или пароль.", HttpStatus = HttpStatusCodeList.GetByCode(HttpStatusCode.Unauthorized) },
+                    new ErrorInfo { Code = "110", RequestType = Requests.RequestType.Authorization, Message = "Общая ошибка авторизации. Неправильный логин или пароль.", HttpStatus = HttpStatusCodeList.GetByCode(HttpStatusCode.Unauthorized) },
                     new ErrorInfo { Code = "111", RequestType = Requests.RequestType.Authorization, Message = "Возникает после нескольких неудачных попыток авторизации. В этом случае нужно авторизоваться в аккаунте через браузер, введя код капчи.", HttpStatus = HttpStatusCodeList.GetByCode(HttpStatusCode.Unauthorized) },
                     new ErrorInfo { Code = "112", RequestType = Requests.RequestType.Authorization, Message = "Возникает, когда пользователь выключен в настройках аккаунта \"Пользователи и права\" или не состоит в аккаунте.", HttpStatus = HttpStatusCodeList.GetByCode(HttpStatusCode.Unauthorized) },
                     new ErrorInfo { Code = "113", RequestType = Requests.RequestType.Authorization, Message = "Доступ к данному аккаунту запрещён с Вашего IP адреса. Возникает, когда в настройках безопасности аккаунта включена фильтрация доступа к API по \"белому списку IP адресов\".", HttpStatus = HttpStatusCodeList.GetByCode(HttpStatusCode.Forbidden) },

@@ -17,16 +17,25 @@ namespace amoCRM.Library.Requests
 
         public RequestAuthorization(HttpClient httpClient, Account account)
         {
-            RequestUri = "/private/api/auth.php?type=json";
+            RequestUri = ApiConstants.AUTH;
             _httpClient = httpClient;
             _account = account;
         }
 
         public override async Task<Response<Authorization>> SendAsync()
         {
-            var api = new RequestApi();
+            var api = new ApiRequest();
             var response = await api.SendAsync<ResponseAuthorization>(_httpClient, RequestUri, GetContent(), GetHeaders());
-            var result = new Response<Authorization>(response.Succeeded, response.Result.Authorization, response.Info);
+            Response<Authorization> result;
+            if (response.Succeeded)
+            {
+                result = new Response<Authorization>(response.Succeeded, response.Result.Response, response.Info);
+            }
+            else
+            {
+                result = new Response<Authorization>(response.Succeeded, null, response.Info);
+                OnError(result);
+            }
             if (!response.Succeeded)
             {
                 OnError(result);
@@ -50,8 +59,8 @@ namespace amoCRM.Library.Requests
         {
             return new Dictionary<string, string>
                                  {
-                                     { Constant.FORM_USER_LOGIN, _account.Login },
-                                     { Constant.FORM_USER_HASH, _account.Hash },
+                                     { ApiConstants.FORM_USER_LOGIN, _account.Login },
+                                     { ApiConstants.FORM_USER_HASH, _account.Hash },
                                  };
         }
     }
