@@ -25,6 +25,16 @@ namespace amoCRM.Library.Requests
         {
             var api = new ApiRequest();
             var response = await api.SendAsync<ResponseLeads>(_httpClient, RequestUri, GetContent(), GetHeaders());
+            var result = ProcessResponse(response);
+            if (!result.Succeeded)
+            {
+                OnError(result);
+            }
+            return result;
+        }
+
+        private Response<ReadOnlyCollection<Lead>> ProcessResponse(Response<ResponseLeads> response)
+        {
             Response<ReadOnlyCollection<Lead>> result;
             if (response.Succeeded)
             {
@@ -33,7 +43,6 @@ namespace amoCRM.Library.Requests
             else
             {
                 result = new Response<ReadOnlyCollection<Lead>>(response.Succeeded, null, response.Info);
-                OnError(result);
             }
             return result;
         }

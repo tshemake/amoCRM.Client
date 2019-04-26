@@ -26,6 +26,16 @@ namespace amoCRM.Library.Requests
         {
             var api = new ApiRequest();
             var response = await api.SendAsync<ResponseAuthorization>(_httpClient, RequestUri, GetContent(), GetHeaders());
+            var result = ProcessResponse(response);
+            if (!result.Succeeded)
+            {
+                OnError(result);
+            }
+            return result;
+        }
+
+        private Response<Authorization> ProcessResponse(Response<ResponseAuthorization> response)
+        {
             Response<Authorization> result;
             if (response.Succeeded)
             {
@@ -34,11 +44,6 @@ namespace amoCRM.Library.Requests
             else
             {
                 result = new Response<Authorization>(response.Succeeded, null, response.Info);
-                OnError(result);
-            }
-            if (!response.Succeeded)
-            {
-                OnError(result);
             }
             return result;
         }
