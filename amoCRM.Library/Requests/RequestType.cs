@@ -17,6 +17,7 @@ namespace amoCRM.Library.Requests
         Catalog,
         ElementOfCatalog,
         Customer,
+        IncomingLead,
         Other
     }
 }

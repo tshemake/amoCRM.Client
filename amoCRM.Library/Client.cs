@@ -109,5 +109,11 @@ namespace amoCRM.Library
             var request = new RequestGetNotes(HttpClient);
             return await request.GetAsync(noteType);
         }
+
+        public async Task<Response<ReadOnlyCollection<IncomingLead>>> GetIncomingLeadsAsync()
+        {
+            var request = new RequestGetIncomingLeads(HttpClient);
+            return await request.GetAsync();
+        }
     }
 }

@@ -28,6 +28,7 @@ namespace amoCRM.Library.Helpers
         public const string API_GET_TASKS = API_VERSION_SUFFIX + "/tasks";
         public const string API_GET_CONTACTS = API_VERSION_SUFFIX + "/contacts";
         public const string API_GET_NOTES = API_VERSION_SUFFIX + "/notes";
+        public const string API_GET_INCOMING_LEADS = API_VERSION_SUFFIX + "/incoming_leads";
 
         public const string FORM_USER_LOGIN = "USER_LOGIN";
         public const string FORM_USER_HASH = "USER_HASH";
