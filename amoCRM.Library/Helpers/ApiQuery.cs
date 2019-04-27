@@ -7,11 +7,9 @@ using System.Text.RegularExpressions;
 
 namespace amoCRM.Library.Helpers
 {
-    public class Api
+    public static class ApiQuery
     {
-        public Api() { }
-
-        public string Get(QueryParameter param)
+        public static string Get(QueryParameter param)
         {
             try
             {
@@ -46,7 +44,7 @@ namespace amoCRM.Library.Helpers
                         headers.Add(sinceParamName, sinceParamValue);
                     }
 
-                    var limitParamValue = 100;
+                    var limitParamValue = ApiConstants.MAX_LIMIT;
                     if (param.Limit.HasValue)
                     {
                         limitParamValue = param.Limit.Value;
@@ -103,11 +101,7 @@ namespace amoCRM.Library.Helpers
 
                         if (param.Type != ModelType.Unknown)
                         {
-                            var typeParamValue = ModelType.Contact.GetStringValue();
-                            if (param.Type != ModelType.Contact)
-                            {
-                                typeParamValue = ModelType.Lead.GetStringValue();
-                            }
+                            var typeParamValue = param.Type.GetStringValue();
                             var typeParamName = AttributeHelper.GetPropertyAttributeValue<QueryParameter, ModelType, ParameterAttribute, string>(prop => prop.Type, attr => attr.Name);
                             query.Append($"&{typeParamName}={typeParamValue}");
                         }

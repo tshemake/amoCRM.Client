@@ -103,5 +103,11 @@ namespace amoCRM.Library
             var request = new RequestGetContacts(HttpClient);
             return await request.GetAsync();
         }
+
+        public async Task<Response<ReadOnlyCollection<Note>>> GetNotesAsync(Core.Types.NoteType noteType)
+        {
+            var request = new RequestGetNotes(HttpClient);
+            return await request.GetAsync(noteType);
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace amoCRM.Library.Requests
         public RequestGetTasks(HttpClient httpClient)
         {
             RequestUri = ApiConstants.API_GET_TASKS;
-            RequestType = RequestType.Lead;
+            RequestType = RequestType.Task;
             HttpClient = httpClient;
         }
 
