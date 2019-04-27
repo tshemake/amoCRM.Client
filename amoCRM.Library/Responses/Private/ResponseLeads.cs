@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
-using amoCRM.Library.Core.Objects;
+using amoCRM.Library.Core.Objects.Private;
 using Newtonsoft.Json;
 
-namespace amoCRM.Library.Responses
+namespace amoCRM.Library.Responses.Private
 {
     public class ResponseLeads : ApiResponse<LeadList>
     {

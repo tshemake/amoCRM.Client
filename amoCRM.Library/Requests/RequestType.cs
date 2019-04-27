@@ -10,6 +10,7 @@ namespace amoCRM.Library.Requests
         Authorization,
         Account,
         Contact,
+        Company,
         Lead,
         Note,
         Task,

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using amoCRM.Library.Exceptions;
 using amoCRM.Library.Responses;
 
-namespace amoCRM.Library.Requests
+namespace amoCRM.Library.Requests.Private
 {
     public abstract class Request<TResult> where TResult : class
     {
@@ -17,7 +17,7 @@ namespace amoCRM.Library.Requests
         public virtual async Task<Response<TResult>> SendAsync()
         {
             var api = new ApiRequest();
-            var response = await api.SendAsync<ApiResponse<TResult>>(HttpClient, RequestUri, GetContent(), GetHeaders());
+            var response = await api.SendAsync<Responses.Private.ApiResponse<TResult>>(HttpClient, RequestUri, GetContent(), GetHeaders());
             var result = ProcessResponse(response);
             if (!result.Succeeded)
             {
@@ -26,12 +26,12 @@ namespace amoCRM.Library.Requests
             return result;
         }
 
-        public virtual Response<TResult> ProcessResponse(Response<ApiResponse<TResult>> response)
+        public virtual Response<TResult> ProcessResponse(Response<Responses.Private.ApiResponse<TResult>> response)
         {
             Response<TResult> result;
             if (response.Succeeded)
             {
-                result = new Response<TResult>(response.Succeeded, response.Result.Embedded.Items, response.Info);
+                result = new Response<TResult>(response.Succeeded, response.Result.Response, response.Info);
             }
             else
             {

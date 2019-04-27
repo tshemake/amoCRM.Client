@@ -48,20 +48,18 @@ namespace amoCRM.Library.Requests
 
                 if (httpResponse.StatusCode == HttpStatusCode.OK)
                 {
-                    if (httpResponse.Content.Headers.ContentType.MediaType == "application/json")
+                    if (IsJsonContentType(httpResponse))
                     {
-                        var json = await httpResponse.Content.ReadAsStringAsync();
-                        var value = FromJson<TResult>(json);
+                        var value = await ReadContentAsJsonAsync<TResult>(httpResponse);
                         return new Response<TResult>(true, value, new ResultInfo(HttpStatusCodeList.GetByCode(httpResponse.StatusCode)));
                     }
                     return new Response<TResult>(false, null, new ResultInfo(HttpStatusCodeList.GetByCode(httpResponse.StatusCode), $"Service sent unknown content-type from url {requestUri}"));
                 }
                 else if (httpResponse.StatusCode == HttpStatusCode.NoContent)
                 {
-                    if (httpResponse.Content.Headers.ContentType.MediaType == "application/json")
+                    if (IsJsonContentType(httpResponse))
                     {
-                        var json = await httpResponse.Content.ReadAsStringAsync();
-                        var value = FromJson<ResponseError>(json);
+                        var value = await ReadContentAsJsonAsync<ResponseError>(httpResponse);
                         return new Response<TResult>(false, null, new ResultInfo(HttpStatusCodeList.GetByCode(httpResponse.StatusCode), value.Error.Code));
                     }
                     return new Response<TResult>(false, null, new ResultInfo(HttpStatusCodeList.GetByCode(httpResponse.StatusCode)));
@@ -76,30 +74,27 @@ namespace amoCRM.Library.Requests
                 }
                 else if (httpResponse.StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    if (httpResponse.Content.Headers.ContentType.MediaType == "application/json")
+                    if (IsJsonContentType(httpResponse))
                     {
-                        var json = await httpResponse.Content.ReadAsStringAsync();
-                        var value = FromJson<ResponseError>(json);
+                        var value = await ReadContentAsJsonAsync<ResponseError>(httpResponse);
                         return new Response<TResult>(false, null, new ResultInfo(HttpStatusCodeList.GetByCode(httpResponse.StatusCode), value.Error.Code));
                     }
                     return new Response<TResult>(false, null, new ResultInfo(HttpStatusCodeList.GetByCode(httpResponse.StatusCode)));
                 }
                 else if (httpResponse.StatusCode == HttpStatusCode.PaymentRequired)
                 {
-                    if (httpResponse.Content.Headers.ContentType.MediaType == "application/json")
+                    if (IsJsonContentType(httpResponse))
                     {
-                        var json = await httpResponse.Content.ReadAsStringAsync();
-                        var value = FromJson<ResponseError>(json);
+                        var value = await ReadContentAsJsonAsync<ResponseError>(httpResponse);
                         return new Response<TResult>(false, null, new ResultInfo(HttpStatusCodeList.GetByCode(httpResponse.StatusCode), value.Error.Code));
                     }
                     return new Response<TResult>(false, null, new ResultInfo(HttpStatusCodeList.GetByCode(httpResponse.StatusCode)));
                 }
                 else if (httpResponse.StatusCode == HttpStatusCode.Forbidden)
                 {
-                    if (httpResponse.Content.Headers.ContentType.MediaType == "application/json")
+                    if (IsJsonContentType(httpResponse))
                     {
-                        var json = await httpResponse.Content.ReadAsStringAsync();
-                        var value = FromJson<ResponseError>(json);
+                        var value = await ReadContentAsJsonAsync<ResponseError>(httpResponse);
                         return new Response<TResult>(false, null, new ResultInfo(HttpStatusCodeList.GetByCode(httpResponse.StatusCode), value.Error.Code));
                     }
                     return new Response<TResult>(false, null, new ResultInfo(HttpStatusCodeList.GetByCode(httpResponse.StatusCode)));
@@ -110,10 +105,9 @@ namespace amoCRM.Library.Requests
                 }
                 else if (httpResponse.StatusCode == HttpStatusCode.TooManyRequests)
                 {
-                    if (httpResponse.Content.Headers.ContentType.MediaType == "application/json")
+                    if (IsJsonContentType(httpResponse))
                     {
-                        var json = await httpResponse.Content.ReadAsStringAsync();
-                        var value = FromJson<ResponseError>(json);
+                        var value = await ReadContentAsJsonAsync<ResponseError>(httpResponse);
                         return new Response<TResult>(false, null, new ResultInfo(HttpStatusCodeList.GetByCode(httpResponse.StatusCode), value.Error.Code));
                     }
                     return new Response<TResult>(false, null, new ResultInfo(HttpStatusCodeList.GetByCode(httpResponse.StatusCode)));
@@ -132,9 +126,12 @@ namespace amoCRM.Library.Requests
                 }
                 else
                 {
-                    var json = await httpResponse.Content.ReadAsStringAsync();
-                    var value = FromJson<ResponseError>(json);
-                    return new Response<TResult>(false, null, new ResultInfo(HttpStatusCodeList.GetByCode(httpResponse.StatusCode), value.Error.Code));
+                    if (IsJsonContentType(httpResponse))
+                    {
+                        var value = await ReadContentAsJsonAsync<ResponseError>(httpResponse);
+                        return new Response<TResult>(false, null, new ResultInfo(HttpStatusCodeList.GetByCode(httpResponse.StatusCode), value.Error.Code));
+                    }
+                    return new Response<TResult>(false, null, new ResultInfo(HttpStatusCodeList.GetByCode(httpResponse.StatusCode)));
                 }
             }
             catch (Exception ex)
@@ -143,9 +140,21 @@ namespace amoCRM.Library.Requests
             }
         }
 
-        private static T FromJson<T>(string value)
+        private static async Task<TResult> ReadContentAsJsonAsync<TResult>(HttpResponseMessage message)
         {
-            return JsonConvert.DeserializeObject<T>(value);
+            var content = await message.Content.ReadAsStringAsync();
+            return FromJson<TResult>(content);
+        }
+
+        private static TResult FromJson<TResult>(string value)
+        {
+            return JsonConvert.DeserializeObject<TResult>(value);
+        }
+
+        private static bool IsJsonContentType(HttpResponseMessage httpResponse)
+        {
+            return httpResponse.Content.Headers.ContentType.MediaType == "application/json" ||
+                httpResponse.Content.Headers.ContentType.MediaType == "application/hal+json";
         }
     }
 }

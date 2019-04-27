@@ -11,22 +11,22 @@ using amoCRM.Library.Responses;
 
 namespace amoCRM.Library.Requests
 {
-    public class RequestGetTasks : Request<ReadOnlyCollection<Core.Objects.Task>>
+    public class RequestGetContacts : Request<ReadOnlyCollection<Contact>>
     {
-        public RequestGetTasks(HttpClient httpClient)
+        public RequestGetContacts(HttpClient httpClient)
         {
-            RequestUri = ApiConstants.API_GET_TASKS;
-            RequestType = RequestType.Lead;
+            RequestUri = ApiConstants.API_GET_CONTACTS;
+            RequestType = RequestType.Contact;
             HttpClient = httpClient;
         }
 
-        public async Task<Response<ReadOnlyCollection<Core.Objects.Task>>> GetAsync()
+        public async Task<Response<ReadOnlyCollection<Contact>>> GetAsync()
         {
-           var response = await SendAsync();
-            return new Response<ReadOnlyCollection<Core.Objects.Task>>(response.Succeeded, response.Result, response.Info);
+            var response = await SendAsync();
+            return new Response<ReadOnlyCollection<Contact>>(response.Succeeded, response.Result, response.Info);
         }
 
-        public override void OnError(Response<ReadOnlyCollection<Core.Objects.Task>> response)
+        public override void OnError(Response<ReadOnlyCollection<Contact>> response)
         {
             var errorInfo = ErrorCodeList.Get(RequestType, response.Info.ErrorCode);
             if (errorInfo != null)

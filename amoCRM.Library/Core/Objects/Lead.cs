@@ -24,55 +24,57 @@ namespace amoCRM.Library.Core.Objects
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
-        [JsonConverter(typeof(UnixDateTimeConverter))]
-        [JsonProperty(PropertyName = "date_create")]
-        public DateTime DateCreate { get; set; }
-
-        [JsonProperty(PropertyName = "created_user_id")]
-        public string CreatedUserId { get; set; }
+        [JsonProperty(PropertyName = "created_by")]
+        public int CreatedBy { get; set; }
 
         [JsonConverter(typeof(UnixDateTimeConverter))]
-        [JsonProperty(PropertyName = "last_modified")]
-        public DateTime LastModified { get; set; }
+        [JsonProperty(PropertyName = "created_at")]
+        public DateTime CreatedAt { get; set; }
+
+        [JsonConverter(typeof(UnixDateTimeConverter))]
+        [JsonProperty(PropertyName = "updated_at")]
+        public DateTime UpdatedAt { get; set; }
 
         [JsonProperty(PropertyName = "account_id")]
-        public string AccountId { get; set; }
-
-        [JsonProperty(PropertyName = "price")]
-        public string Price { get; set; }
-
-        [JsonProperty(PropertyName = "responsible_user_id")]
-        public string ResponsibleUserId { get; set; }
-
-        [JsonProperty(PropertyName = "linked_company_id")]
-        public string LinkedCompanyId { get; set; }
-
-        [JsonProperty(PropertyName = "group_id")]
-        public int GroupId { get; set; }
+        public int AccountId { get; set; }
 
         [JsonProperty(PropertyName = "pipeline_id")]
         public int PipeLineId { get; set; }
 
-        [JsonConverter(typeof(UnixDateTimeConverter))]
-        [JsonProperty(PropertyName = "date_close")]
-        public DateTime DateClose { get; set; }
+        [JsonProperty(PropertyName = "status_id")]
+        public int StatusId { get; set; }
 
-        [JsonProperty(PropertyName = "closest_task")]
-        public int ClosestTask { get; set; }
+        [JsonProperty(PropertyName = "is_deleted")]
+        public bool IsDeleted { get; set; }
+
+        [JsonProperty(PropertyName = "main_contact")]
+        public Contact MainContact { get; set; }
+
+        [JsonProperty(PropertyName = "group_id")]
+        public int GroupId { get; set; }
+
+        [JsonProperty(PropertyName = "company")]
+        public Company Company { get; set; }
+
+        [JsonProperty(PropertyName = "closed_at")]
+        public int ClosedAt { get; set; }
+
+        [JsonProperty(PropertyName = "closest_task_at")]
+        public int ClosestTaskAt { get; set; }
+
+        [JsonProperty(PropertyName = "sale")]
+        public int Sale { get; set; }
 
         [JsonProperty(PropertyName = "loss_reason_id")]
         public int LossReasonId { get; set; }
 
-        [JsonProperty(PropertyName = "deleted")]
-        public int Deleted { get; set; }
+        [JsonProperty(PropertyName = "contacts")]
+        public ContactList Contacts { get; set; }
 
-        [JsonProperty(PropertyName = "tags")]
-        public ReadOnlyCollection<Tag> Tags { get; set; }
+        [JsonProperty(PropertyName = "pipeline")]
+        public PipeLine PipeLine { get; set; }
 
-        [JsonProperty(PropertyName = "status_id")]
-        public string StatusId { get; set; }
-
-        [JsonProperty(PropertyName = "main_contact_id")]
-        public object MainContactId { get; set; } // TODO: Может быть int и bool
+        [JsonProperty(PropertyName = "_links")]
+        public Links Links { get; set; }
     }
 }

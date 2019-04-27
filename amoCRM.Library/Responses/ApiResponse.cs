@@ -8,7 +8,16 @@ namespace amoCRM.Library.Responses
 {
     public class ApiResponse<TResult>
     {
-        [JsonProperty(PropertyName = "response")]
-        public TResult Response { get; set; }
+        /// <summary>
+        /// Массив содержащий информацию о запросе.
+        /// </summary>
+        [JsonProperty(PropertyName = "_links")]
+        public Links Links { get; set; }
+
+        /// <summary>
+        /// Массив содержащий информацию прилегающую к запросу.
+        /// </summary>
+        [JsonProperty(PropertyName = "_embedded")]
+        public Embedded<TResult> Embedded { get; set; }
     }
 }

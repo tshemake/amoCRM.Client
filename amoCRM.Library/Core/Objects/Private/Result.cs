@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace amoCRM.Library.Core.Objects
+namespace amoCRM.Library.Core.Objects.Private
 {
     public class Result
     {
@@ -12,8 +12,5 @@ namespace amoCRM.Library.Core.Objects
 
         [JsonProperty(PropertyName = "text")]
         public string Text { get; set; }
-
-        [JsonProperty(PropertyName = "_links")]
-        public Links Links { get; set; }
     }
 }

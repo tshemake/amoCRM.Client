@@ -5,7 +5,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace amoCRM.Library.Core.Objects
+namespace amoCRM.Library.Core.Objects.Private
 {
     public class Authorization
     {

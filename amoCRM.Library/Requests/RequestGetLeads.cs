@@ -13,43 +13,22 @@ namespace amoCRM.Library.Requests
 {
     public class RequestGetLeads : Request<ReadOnlyCollection<Lead>>
     {
-        private readonly HttpClient _httpClient;
-
         public RequestGetLeads(HttpClient httpClient)
         {
-            RequestUri = ApiConstants.GET_LEADS;
-            _httpClient = httpClient;
+            RequestUri = ApiConstants.API_GET_LEADS;
+            RequestType = RequestType.Lead;
+            HttpClient = httpClient;
         }
 
-        public override async Task<Response<ReadOnlyCollection<Lead>>> SendAsync()
+        public async Task<Response<ReadOnlyCollection<Lead>>> GetAsync()
         {
-            var api = new ApiRequest();
-            var response = await api.SendAsync<ResponseLeads>(_httpClient, RequestUri, GetContent(), GetHeaders());
-            var result = ProcessResponse(response);
-            if (!result.Succeeded)
-            {
-                OnError(result);
-            }
-            return result;
-        }
-
-        private Response<ReadOnlyCollection<Lead>> ProcessResponse(Response<ResponseLeads> response)
-        {
-            Response<ReadOnlyCollection<Lead>> result;
-            if (response.Succeeded)
-            {
-                result = new Response<ReadOnlyCollection<Lead>>(response.Succeeded, response.Result.Response.Leads, response.Info);
-            }
-            else
-            {
-                result = new Response<ReadOnlyCollection<Lead>>(response.Succeeded, null, response.Info);
-            }
-            return result;
+           var response = await SendAsync();
+            return new Response<ReadOnlyCollection<Lead>>(response.Succeeded, response.Result, response.Info);
         }
 
         public override void OnError(Response<ReadOnlyCollection<Lead>> response)
         {
-            var errorInfo = ErrorCodeList.Get(RequestType.Lead, response.Info.ErrorCode);
+            var errorInfo = ErrorCodeList.Get(RequestType, response.Info.ErrorCode);
             if (errorInfo != null)
             {
                 response.Info.Message = errorInfo.Message;

@@ -4,29 +4,30 @@ using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using amoCRM.Library.Core.Objects;
+using amoCRM.Library.Core.Objects.Private;
 using amoCRM.Library.Exceptions;
 using amoCRM.Library.Helpers;
 using amoCRM.Library.Responses;
+using amoCRM.Library.Responses.Private;
 
-namespace amoCRM.Library.Requests
+namespace amoCRM.Library.Requests.Private
 {
-    public class RequestGetCompanies : Request<ReadOnlyCollection<Company>>
+    public class RequestGetContacts : Request<ContactList>
     {
-        public RequestGetCompanies(HttpClient httpClient)
+        public RequestGetContacts(HttpClient httpClient)
         {
-            RequestUri = ApiConstants.API_GET_COMPANIES;
-            RequestType = RequestType.Company;
+            RequestUri = ApiConstants.PRIVATE_API_GET_CONTACTS;
+            RequestType = RequestType.Contact;
             HttpClient = httpClient;
         }
 
-        public async Task<Response<ReadOnlyCollection<Company>>> GetAsync()
+        public async Task<Response<ReadOnlyCollection<Contact>>> GetAsync()
         {
             var response = await SendAsync();
-            return new Response<ReadOnlyCollection<Company>>(response.Succeeded, response.Result, response.Info);
+            return new Response<ReadOnlyCollection<Contact>>(response.Succeeded, response.Result.Contacts, response.Info);
         }
 
-        public override void OnError(Response<ReadOnlyCollection<Company>> response)
+        public override void OnError(Response<ContactList> response)
         {
             var errorInfo = ErrorCodeList.Get(RequestType, response.Info.ErrorCode);
             if (errorInfo != null)

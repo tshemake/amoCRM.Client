@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace amoCRM.Library.Core.Objects
+namespace amoCRM.Library.Core.Objects.Private
 {
     public class CustomFieldList
     {

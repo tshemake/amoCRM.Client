@@ -5,13 +5,10 @@ using Newtonsoft.Json;
 
 namespace amoCRM.Library.Core.Objects
 {
-    public class Result
+    public class PipeLine
     {
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
-
-        [JsonProperty(PropertyName = "text")]
-        public string Text { get; set; }
 
         [JsonProperty(PropertyName = "_links")]
         public Links Links { get; set; }

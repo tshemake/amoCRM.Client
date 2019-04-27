@@ -5,7 +5,7 @@ using System.Text;
 using amoCRM.Library.Core.Types;
 using Newtonsoft.Json;
 
-namespace amoCRM.Library.Core.Objects
+namespace amoCRM.Library.Core.Objects.Private
 {
     /// <summary>
     /// <see href="https://www.amocrm.ru/developers/content/api/account">Аккаунт</see>.
@@ -64,8 +64,8 @@ namespace amoCRM.Library.Core.Objects
         /// </item>
         /// </list>
         /// </summary>
-        [JsonProperty(PropertyName = "language")]
-        public Language Language { get; set; }
+        [JsonProperty(PropertyName = "language", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Language? Language { get; set; }
 
         [JsonProperty(PropertyName = "notifications_base_url")]
         public string NotificationsBaseUrl { get; set; }
@@ -110,7 +110,7 @@ namespace amoCRM.Library.Core.Objects
         public string Country { get; set; }
 
         [JsonProperty(PropertyName = "unsorted_on")]
-        public YesNo UnsortedOn { get; set; }
+        public YesNo? UnsortedOn { get; set; }
 
         [JsonProperty(PropertyName = "mobile_feature_version")]
         public int MobileFeatureVersion { get; set; }

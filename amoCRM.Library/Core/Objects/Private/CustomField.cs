@@ -5,7 +5,7 @@ using System.Text;
 using amoCRM.Library.Core.Types;
 using Newtonsoft.Json;
 
-namespace amoCRM.Library.Core.Objects
+namespace amoCRM.Library.Core.Objects.Private
 {
     public class CustomField
     {
@@ -24,10 +24,31 @@ namespace amoCRM.Library.Core.Objects
         [JsonProperty(PropertyName = "code")]
         public string Code { get; set; }
 
+        [JsonProperty(PropertyName = "multiple", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public YesNo? Multiple { get; set; }
+
+        [JsonProperty(PropertyName = "type_id")]
+        public string TypeId { get; set; }
+
+        [JsonProperty(PropertyName = "disabled")]
+        public string Disabled { get; set; }
+
+        /// <summary>
+        /// Порядковый номер при отображении (аналогично для сделок, компаний, покупателей).
+        /// </summary>
+        [JsonProperty(PropertyName = "sort")]
+        public int Sort { get; set; }
+
+        [JsonProperty(PropertyName = "is_required")]
+        public bool IsRequired { get; set; }
+
+        [JsonProperty(PropertyName = "is_deletable")]
+        public bool IsDeletable { get; set; }
+
+        [JsonProperty(PropertyName = "is_visible")]
+        public bool IsVisible { get; set; }
+
         [JsonProperty(PropertyName = "values")]
         public ReadOnlyCollection<ValueField> Values { get; set; }
-
-        [JsonProperty(PropertyName = "is_system")]
-        public bool IsSystem { get; set; }
     }
 }

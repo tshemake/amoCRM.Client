@@ -11,8 +11,8 @@ namespace amoCRM.Library.Core.Objects
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
 
-        [JsonProperty(PropertyName = "language")]
-        public Language Language { get; set; }
+        [JsonProperty(PropertyName = "language", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public Language? Language { get; set; }
 
         [JsonProperty(PropertyName = "mail_admin")]
         public string MailAdmin { get; set; }
@@ -29,14 +29,14 @@ namespace amoCRM.Library.Core.Objects
         /// <summary>
         /// Наличие прав администратора.
         /// </summary>
-        [JsonProperty(PropertyName = "is_admin")]
-        public YesNo IsAdmin { get; set; }
+        [JsonProperty(PropertyName = "is_admin", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public YesNo? IsAdmin { get; set; }
 
-        [JsonProperty(PropertyName = "unsorted_access")]
-        public YesNo UnsortedAccess { get; set; }
+        [JsonProperty(PropertyName = "unsorted_access", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public YesNo? UnsortedAccess { get; set; }
 
-        [JsonProperty(PropertyName = "catalogs_access")]
-        public YesNo CatalogsAccess { get; set; }
+        [JsonProperty(PropertyName = "catalogs_access", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public YesNo? CatalogsAccess { get; set; }
 
         /// <summary>
         /// id группы, в которой состоит пользователь.

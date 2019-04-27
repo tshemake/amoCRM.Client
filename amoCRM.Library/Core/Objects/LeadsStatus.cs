@@ -23,7 +23,7 @@ namespace amoCRM.Library.Core.Objects
         [JsonProperty(PropertyName = "color")]
         public string Color { get; set; }
 
-        [JsonProperty(PropertyName = "editable")]
-        public YesNo Editable { get; set; }
+        [JsonProperty(PropertyName = "editable", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public YesNo? Editable { get; set; }
     }
 }
