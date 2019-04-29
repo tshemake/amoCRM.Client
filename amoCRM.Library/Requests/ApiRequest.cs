@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using amoCRM.Library.Helpers;
 using amoCRM.Library.Responses;
 using Newtonsoft.Json;
 
@@ -143,12 +144,7 @@ namespace amoCRM.Library.Requests
         private static async Task<TResult> ReadContentAsJsonAsync<TResult>(HttpResponseMessage message)
         {
             var content = await message.Content.ReadAsStringAsync();
-            return FromJson<TResult>(content);
-        }
-
-        private static TResult FromJson<TResult>(string value)
-        {
-            return JsonConvert.DeserializeObject<TResult>(value);
+            return EntityEx.GetAs<TResult>(content);
         }
 
         private static bool IsJsonContentType(HttpResponseMessage httpResponse)

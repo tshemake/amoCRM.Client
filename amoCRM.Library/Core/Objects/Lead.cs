@@ -10,14 +10,8 @@ namespace amoCRM.Library.Core.Objects
     /// <summary>
     /// <see href="https://www.amocrm.ru/developers/content/api/leads">Сделки</see>.
     /// </summary>
-    public class Lead
+    public class Lead : CustomizableEntity<int>
     {
-        /// <summary>
-        /// Уникальный идентификатор сделки.
-        /// </summary>
-        [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
-
         /// <summary>
         /// Название сделки.
         /// </summary>
@@ -26,14 +20,6 @@ namespace amoCRM.Library.Core.Objects
 
         [JsonProperty(PropertyName = "created_by")]
         public int CreatedBy { get; set; }
-
-        [JsonConverter(typeof(UnixDateTimeConverter))]
-        [JsonProperty(PropertyName = "created_at")]
-        public DateTime CreatedAt { get; set; }
-
-        [JsonConverter(typeof(UnixDateTimeConverter))]
-        [JsonProperty(PropertyName = "updated_at")]
-        public DateTime UpdatedAt { get; set; }
 
         [JsonProperty(PropertyName = "account_id")]
         public int AccountId { get; set; }

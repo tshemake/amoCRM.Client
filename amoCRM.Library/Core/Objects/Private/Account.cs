@@ -16,7 +16,7 @@ namespace amoCRM.Library.Core.Objects.Private
         /// Уникальный идентификатор аккаунта.
         /// </summary>
         [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Название аккаунта.

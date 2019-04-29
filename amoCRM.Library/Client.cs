@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
+using System.Runtime.Versioning;
 using System.Text;
 using System.Threading.Tasks;
 using amoCRM.Library.Core.Objects;
@@ -16,7 +18,6 @@ namespace amoCRM.Library
     public class Client
     {
         public string BaseAddress { get; private set; }
-        public string UserAgent { get; set; } = "amoCRM-API-client/1.0";
         public string UserLogin { get; private set; }
         public string UserHash { get; private set; }
         public HttpClient HttpClient { get; private set; }
@@ -32,6 +33,7 @@ namespace amoCRM.Library
             var cookieContainer = new CookieContainer();
             var handler = new HttpClientHandler() { CookieContainer = cookieContainer };
             client.HttpClient = new HttpClient(handler) { BaseAddress = new Uri(client.BaseAddress) };
+            client.HttpClient.DefaultRequestHeaders.UserAgent.ParseAdd($"({GetASPNetVersion()}; {GetOsVersion()}; {GetArchitecture()})");
 
             return client;
         }
@@ -114,6 +116,40 @@ namespace amoCRM.Library
         {
             var request = new RequestGetIncomingLeads(HttpClient);
             return await request.GetAsync();
+        }
+
+        public async Task<Response<ReadOnlyCollection<CatalogElement>>> GetCatalogElementsAsync()
+        {
+            var request = new RequestGetCatalogElements(HttpClient);
+            return await request.GetAsync();
+        }
+
+        public static string GetOsVersion()
+        {
+            return System.Runtime.InteropServices.RuntimeInformation.OSDescription;
+        }
+
+        public static string GetArchitecture()
+        {
+            return System.Runtime.InteropServices.RuntimeInformation.OSArchitecture.ToString();
+        }
+
+        public static string GetASPNetVersion()
+        {
+            return Assembly
+                    .GetEntryAssembly()?
+                    .GetCustomAttribute<TargetFrameworkAttribute>()?
+                    .FrameworkName;
+        }
+
+        public string GetClientVersion()
+        {
+            return GetType()
+                .GetTypeInfo()
+                .Assembly
+                .GetName()
+                .Version
+                .ToString();
         }
     }
 }

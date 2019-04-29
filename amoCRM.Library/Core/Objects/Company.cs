@@ -10,33 +10,16 @@ namespace amoCRM.Library.Core.Objects
     /// <summary>
     /// <see href="https://www.amocrm.ru/developers/content/api/companies">Компании</see>.
     /// </summary>
-    public class Company
+    public class Company : CustomizableEntity<int>
     {
-        /// <summary>
-        /// Уникальный идентификатор компании.
-        /// </summary>
-        [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
-
         /// <summary>
         /// Название компании.
         /// </summary>
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
-        [JsonProperty(PropertyName = "responsible_user_id")]
-        public int ResponsibleUserId { get; set; }
-
         [JsonProperty(PropertyName = "created_by")]
         public int CreatedBy { get; set; }
-
-        [JsonConverter(typeof(UnixDateTimeConverter))]
-        [JsonProperty(PropertyName = "created_at")]
-        public DateTime CreatedAt { get; set; }
-
-        [JsonConverter(typeof(UnixDateTimeConverter))]
-        [JsonProperty(PropertyName = "updated_at")]
-        public DateTime UpdatedAt { get; set; }
 
         [JsonProperty(PropertyName = "account_id")]
         public int AccountId { get; set; }
@@ -55,9 +38,6 @@ namespace amoCRM.Library.Core.Objects
 
         [JsonProperty(PropertyName = "tags")]
         public object Tags { get; set; }
-
-        [JsonProperty(PropertyName = "custom_fields")]
-        public object CustomFields { get; set; }
 
         [JsonProperty(PropertyName = "contacts")]
         public ContactList Contacts { get; set; }
