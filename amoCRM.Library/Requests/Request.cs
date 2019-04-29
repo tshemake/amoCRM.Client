@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using amoCRM.Library.Core.Objects;
 using amoCRM.Library.Exceptions;
 using amoCRM.Library.Responses;
 

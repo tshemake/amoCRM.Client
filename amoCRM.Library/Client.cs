@@ -124,6 +124,12 @@ namespace amoCRM.Library
             return await request.GetAsync();
         }
 
+        public async Task<Response<ReadOnlyCollection<Catalog>>> GetCatalogsAsync()
+        {
+            var request = new RequestGetCatalogs(HttpClient);
+            return await request.GetAsync();
+        }
+
         public static string GetOsVersion()
         {
             return System.Runtime.InteropServices.RuntimeInformation.OSDescription;
