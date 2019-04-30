@@ -19,7 +19,7 @@ namespace amoCRM.Library.Requests
         public virtual async Task<Response<TResult>> SendAsync()
         {
             var api = new ApiRequest();
-            var response = await api.SendAsync<ApiResponse<TResult>>(HttpClient, RequestUri, GetContent(), GetHeaders());
+            var response = await api.SendAsync<ApiResponse<TResult>>(HttpClient, RequestUri, ToHttpContent(), GetHeaders());
             var result = ProcessResponse(response);
             if (!result.Succeeded)
             {
@@ -54,9 +54,14 @@ namespace amoCRM.Library.Requests
             }
         }
 
-        public virtual Dictionary<string, string> GetContent()
+        public HttpContent ToHttpContent()
         {
-            return new Dictionary<string, string>();
+            return Serialize();
+        }
+
+        public virtual HttpContent Serialize()
+        {
+            return null;
         }
 
         public virtual Dictionary<string, string> GetHeaders()

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using amoCRM.Library.Core.Types;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -47,7 +48,7 @@ namespace amoCRM.Library.Core.Objects
         public bool IsCompleted { get; set; }
 
         [JsonProperty(PropertyName = "task_type")]
-        public int TaskType { get; set; }
+        public TaskType TaskType { get; set; }
 
         [JsonConverter(typeof(UnixDateTimeConverter))]
         [JsonProperty(PropertyName = "complete_till_at")]
@@ -60,6 +61,6 @@ namespace amoCRM.Library.Core.Objects
         public Result Result { get; set; }
 
         [JsonProperty(PropertyName = "_links")]
-        public Links Links { get; set; }
+        public LinkList Links { get; set; }
     }
 }

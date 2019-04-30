@@ -13,10 +13,10 @@ namespace amoCRM.Library.Requests.Private
 {
     public class RequestGetCurrentAccount : Request<CurrentAccount>
     {
-        public RequestGetCurrentAccount(HttpClient httpClient)
+        public RequestGetCurrentAccount(HttpClient httpClient, ApiUri apiUri)
         {
-            RequestUri = ApiConstants.PRIVATE_API_GET_CURRENT_ACCOUNT;
-            RequestType = RequestType.Account;
+            RequestType = RequestType.CurrentAccount;
+            RequestUri = apiUri.Private.GetUrl(RequestType);
             HttpClient = httpClient;
         }
 

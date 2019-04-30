@@ -53,6 +53,6 @@ namespace amoCRM.Library.Core.Objects
         public string Text { get; set; }
 
         [JsonProperty(PropertyName = "_links")]
-        public Links Links { get; set; }
+        public LinkList Links { get; set; }
     }
 }

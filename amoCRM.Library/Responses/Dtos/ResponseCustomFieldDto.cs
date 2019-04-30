@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using amoCRM.Library.Core.Objects;
 using Newtonsoft.Json;
 
-namespace amoCRM.Library.Core.Objects
+namespace amoCRM.Library.Responses.Dtos
 {
-    public class CustomerList
+    public class ResponseCustomFieldDto
     {
-        [JsonProperty(PropertyName = "id")]
-        public ReadOnlyCollection<int> Id { get; set; }
+        [JsonProperty("id")]
+        public int Id { get; set; }
 
         [JsonProperty(PropertyName = "_links")]
         public LinkList Links { get; set; }

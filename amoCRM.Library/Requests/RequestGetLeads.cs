@@ -13,10 +13,10 @@ namespace amoCRM.Library.Requests
 {
     public class RequestGetLeads : Request<ReadOnlyCollection<Lead>>
     {
-        public RequestGetLeads(HttpClient httpClient)
+        public RequestGetLeads(HttpClient httpClient, ApiUri apiUri)
         {
-            RequestUri = ApiConstants.API_GET_LEADS;
             RequestType = RequestType.Lead;
+            RequestUri = apiUri.GetUrl(RequestType);
             HttpClient = httpClient;
         }
 

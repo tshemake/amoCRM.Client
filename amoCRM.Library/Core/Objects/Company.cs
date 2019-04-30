@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using amoCRM.Library.Helpers.Converters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -10,7 +11,7 @@ namespace amoCRM.Library.Core.Objects
     /// <summary>
     /// <see href="https://www.amocrm.ru/developers/content/api/companies">Компании</see>.
     /// </summary>
-    public class Company : CustomizableEntity<int>
+    public class Company : CustomizableEntity
     {
         /// <summary>
         /// Название компании.
@@ -37,7 +38,8 @@ namespace amoCRM.Library.Core.Objects
         public int ClosestTaskAt { get; set; }
 
         [JsonProperty(PropertyName = "tags")]
-        public object Tags { get; set; }
+        [JsonConverter(typeof(SingleOrArrayToArrayConverter<Tag, int>))]
+        public ReadOnlyCollection<Tag> Tags { get; set; }
 
         [JsonProperty(PropertyName = "contacts")]
         public ContactList Contacts { get; set; }
@@ -49,6 +51,6 @@ namespace amoCRM.Library.Core.Objects
         public Result Result { get; set; }
 
         [JsonProperty(PropertyName = "_links")]
-        public Links Links { get; set; }
+        public LinkList Links { get; set; }
     }
 }

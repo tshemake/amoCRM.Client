@@ -5,6 +5,7 @@ using System.Net;
 using System.Reflection;
 using amoCRM.Library;
 using amoCRM.Library.Helpers;
+using amoCRM.Library.Requests.Dtos;
 using amoCRM.Library.Responses;
 
 namespace amoCRM.Client

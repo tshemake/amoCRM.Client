@@ -13,10 +13,11 @@ namespace amoCRM.Library.Requests
 {
     public class RequestGetNotes : Request<ReadOnlyCollection<Note>>
     {
-        public RequestGetNotes(HttpClient httpClient)
+        public RequestGetNotes(HttpClient httpClient, ApiUri apiUri)
         {
-            RequestUri = ApiConstants.API_GET_NOTES;
+
             RequestType = RequestType.Note;
+            RequestUri = apiUri.GetUrl(RequestType);
             HttpClient = httpClient;
         }
 

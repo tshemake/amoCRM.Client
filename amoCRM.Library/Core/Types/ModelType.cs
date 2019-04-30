@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace amoCRM.Library.Requests
+namespace amoCRM.Library.Core.Types
 {
-    public enum RequestType : byte
+    public enum ModelType : byte
     {
         Unknown = 0,
-
         /// <summary>
         /// Контакт.
         /// </summary>
@@ -27,15 +26,5 @@ namespace amoCRM.Library.Requests
         /// Покупатель.
         /// </summary>
         Customer = 12,
-        CustomField,
-        Authorization,
-        Account,
-        CurrentAccount,
-        Note,
-        Task,
-        Catalog,
-        ElementOfCatalog,
-        IncomingLead,
-        Other
     }
 }

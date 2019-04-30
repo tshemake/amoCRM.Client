@@ -6,7 +6,7 @@ using Newtonsoft.Json.Converters;
 
 namespace amoCRM.Library.Core.Objects
 {
-    public abstract class BaseEntity<TKey>
+    public abstract class BaseEntity<TKey> : IEntity<TKey>
     {
         [JsonProperty(PropertyName = "id")]
         public virtual TKey Id { get; set; }
@@ -21,8 +21,5 @@ namespace amoCRM.Library.Core.Objects
 
         [JsonProperty(PropertyName = "responsible_user_id")]
         public virtual int ResponsibleUserId { get; set; }
-
-        [JsonProperty(PropertyName = "custom_fields")]
-        public virtual object CustomFields { get; set; }
     }
 }

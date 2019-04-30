@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace amoCRM.Library.Core.Objects
 {
-    public class Tag
+    public class Tag : IEntity<int>
     {
         /// <summary>
         /// id тега, прикреплённого к данной сделке.

@@ -13,10 +13,10 @@ namespace amoCRM.Library.Requests
 {
     public class RequestGetTasks : Request<ReadOnlyCollection<Core.Objects.Task>>
     {
-        public RequestGetTasks(HttpClient httpClient)
+        public RequestGetTasks(HttpClient httpClient, ApiUri apiUri)
         {
-            RequestUri = ApiConstants.API_GET_TASKS;
             RequestType = RequestType.Task;
+            RequestUri = apiUri.GetUrl(RequestType);
             HttpClient = httpClient;
         }
 

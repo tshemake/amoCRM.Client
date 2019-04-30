@@ -14,10 +14,10 @@ namespace amoCRM.Library.Requests.Private
 {
     public class RequestGetCompanies : Request<CompanyList>
     {
-        public RequestGetCompanies(HttpClient httpClient)
+        public RequestGetCompanies(HttpClient httpClient, ApiUri apiUri)
         {
-            RequestUri = ApiConstants.PRIVATE_API_GET_COMPANIES;
             RequestType = RequestType.Company;
+            RequestUri = apiUri.Private.GetUrl(RequestType);
             HttpClient = httpClient;
         }
 

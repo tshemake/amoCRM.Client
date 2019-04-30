@@ -10,7 +10,7 @@ namespace amoCRM.Library.Core.Objects
     /// <summary>
     /// <see href="https://www.amocrm.ru/developers/content/api/leads">Сделки</see>.
     /// </summary>
-    public class Lead : CustomizableEntity<int>
+    public class Lead : CustomizableEntity
     {
         /// <summary>
         /// Название сделки.
@@ -61,6 +61,6 @@ namespace amoCRM.Library.Core.Objects
         public PipeLine PipeLine { get; set; }
 
         [JsonProperty(PropertyName = "_links")]
-        public Links Links { get; set; }
+        public LinkList Links { get; set; }
     }
 }

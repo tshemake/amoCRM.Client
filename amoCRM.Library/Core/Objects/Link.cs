@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace amoCRM.Library.Core.Objects
 {
-    public class SelfLink
+    public class Link
     {
         /// <summary>
         /// Относительный URL текущего запроса

@@ -9,10 +9,22 @@ namespace amoCRM.Library.Responses
     public class ApiResponse<TResult>
     {
         /// <summary>
+        /// Уникальный идентификатор новой сущности.
+        /// </summary>
+        [JsonProperty("id", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int? Id { get; set; }
+
+        /// <summary>
+        /// Уникальный идентификатор сущности в клиентской программе, если request_id не передан в запросе, то он генерируется автоматически.
+        /// </summary>
+        [JsonProperty("request_id", DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int? RequestId { get; set; }
+
+        /// <summary>
         /// Массив содержащий информацию о запросе.
         /// </summary>
         [JsonProperty(PropertyName = "_links")]
-        public Links Links { get; set; }
+        public LinkList Links { get; set; }
 
         /// <summary>
         /// Массив содержащий информацию прилегающую к запросу.

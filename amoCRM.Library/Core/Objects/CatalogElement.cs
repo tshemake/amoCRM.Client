@@ -9,7 +9,7 @@ namespace amoCRM.Library.Core.Objects
     /// <summary>
     /// Элемент каталога
     /// </summary>
-    public class CatalogElement : CustomizableEntity<int>
+    public class CatalogElement : CustomizableEntity
     {
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }

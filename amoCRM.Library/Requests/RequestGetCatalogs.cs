@@ -13,10 +13,10 @@ namespace amoCRM.Library.Requests
 {
     public class RequestGetCatalogs : Request<ReadOnlyCollection<Catalog>>
     {
-        public RequestGetCatalogs(HttpClient httpClient)
+        public RequestGetCatalogs(HttpClient httpClient, ApiUri apiUri)
         {
-            RequestUri = ApiConstants.API_GET_CATALOGS;
             RequestType = RequestType.Lead;
+            RequestUri = apiUri.GetUrl(RequestType);
             HttpClient = httpClient;
         }
 

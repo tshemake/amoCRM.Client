@@ -19,7 +19,7 @@ namespace amoCRM.Library.Requests
             { "Accept-Language", "en-us;q=0.8,en;q=0.5,ru-ru,ru;q=0.3" },
             { "Accept-Charset", "utf-8" },
         };
-        public async Task<Response<TResult>> SendAsync<TResult>(HttpClient httpClient, string requestUri, Dictionary<string, string> nameValueCollection, Dictionary<string, string> moreHeaders)
+        public async Task<Response<TResult>> SendAsync<TResult>(HttpClient httpClient, string requestUri, HttpContent content, Dictionary<string, string> moreHeaders)
             where TResult : class, new()
         {
             try
@@ -37,10 +37,9 @@ namespace amoCRM.Library.Requests
                 }
 
                 HttpResponseMessage httpResponse;
-                if (nameValueCollection != null && nameValueCollection.Keys.Any())
+                if (content != null)
                 {
-                    var encodedContent = new FormUrlEncodedContent(nameValueCollection);
-                    httpResponse = await httpClient.PostAsync(requestUri, encodedContent);
+                    httpResponse = await httpClient.PostAsync(requestUri, content);
                 }
                 else
                 {

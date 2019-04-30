@@ -16,10 +16,10 @@ namespace amoCRM.Library.Requests.Private
         private string _userLogin;
         private string _userHash;
 
-        public RequestAuthorization(HttpClient httpClient, string userLogin, string userHash)
+        public RequestAuthorization(HttpClient httpClient, ApiUri apiUri, string userLogin, string userHash)
         {
-            RequestUri = ApiConstants.PRIVATE_API_AUTH;
             RequestType = RequestType.Authorization;
+            RequestUri = apiUri.Private.GetUrl(RequestType);
             HttpClient = httpClient;
             _userLogin = userLogin;
             _userHash = userHash;
@@ -42,13 +42,14 @@ namespace amoCRM.Library.Requests.Private
             }
         }
 
-        public override Dictionary<string, string> GetContent()
+        public override HttpContent Serialize()
         {
-            return new Dictionary<string, string>
-                                 {
-                                     { ApiConstants.FORM_USER_LOGIN, _userLogin },
-                                     { ApiConstants.FORM_USER_HASH, _userHash },
-                                 };
+            return new FormUrlEncodedContent(
+                new Dictionary<string, string>
+                {
+                    { ApiConstants.FORM_USER_LOGIN, _userLogin },
+                    { ApiConstants.FORM_USER_HASH, _userHash },
+                });
         }
     }
 }

@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace amoCRM.Library.Core.Objects
 {
-    public class Catalog : CustomizableEntity<int>
+    public class Catalog : CustomizableEntity
     {
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }

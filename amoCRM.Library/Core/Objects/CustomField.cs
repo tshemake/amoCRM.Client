@@ -7,13 +7,13 @@ using Newtonsoft.Json;
 
 namespace amoCRM.Library.Core.Objects
 {
-    public class CustomField
+    public class CustomField : IEntity<int>
     {
         /// <summary>
         /// id дополнительного поля контакта (аналогично для сделок, компаний, покупателей).
         /// </summary>
         [JsonProperty(PropertyName = "id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Имя дополнительного поля (аналогично для сделок, компаний, покупателей).

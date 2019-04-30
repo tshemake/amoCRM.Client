@@ -17,5 +17,8 @@ namespace amoCRM.Library.Core.Types
 
         [EnumMember(Value = "post")]
         Post,
+
+        [EnumMember(Value = "patch")]
+        Patch,
     }
 }

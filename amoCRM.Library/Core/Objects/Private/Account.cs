@@ -134,7 +134,7 @@ namespace amoCRM.Library.Core.Objects.Private
         public CustomFieldList CustomFields { get; set; }
 
         [JsonProperty(PropertyName = "pipelines")]
-        public object PipeLines { get; set; }
+        public ReadOnlyDictionary<string, PipeLine> PipeLines { get; set; }
 
         [JsonProperty(PropertyName = "note_types")]
         public ReadOnlyCollection<NoteType> NoteTypes { get; set; }

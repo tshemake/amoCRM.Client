@@ -12,6 +12,6 @@ namespace amoCRM.Library.Core.Objects
         public ReadOnlyCollection<int> Id { get; set; }
 
         [JsonProperty(PropertyName = "_links")]
-        public Links Links { get; set; }
+        public LinkList Links { get; set; }
     }
 }

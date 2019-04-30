@@ -8,7 +8,7 @@ namespace amoCRM.Library.Core.Objects
     /// <summary>
     /// <see href="https://www.amocrm.ru/developers/content/api/contacts">Контакты</see>.
     /// </summary>
-    public class Contact : CustomizableEntity<int>
+    public class Contact : CustomizableEntity
     {
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
@@ -38,6 +38,6 @@ namespace amoCRM.Library.Core.Objects
         public CustomerList Customers { get; set; }
 
         [JsonProperty(PropertyName = "_links")]
-        public Links Links { get; set; }
+        public LinkList Links { get; set; }
     }
 }

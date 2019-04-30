@@ -14,10 +14,10 @@ namespace amoCRM.Library.Requests.Private
 {
     public class RequestGetTasks : Request<TaskList>
     {
-        public RequestGetTasks(HttpClient httpClient)
+        public RequestGetTasks(HttpClient httpClient, ApiUri apiUri)
         {
-            RequestUri = ApiConstants.PRIVATE_API_GET_TASKS;
             RequestType = RequestType.Task;
+            RequestUri = apiUri.Private.GetUrl(RequestType);
             HttpClient = httpClient;
         }
 

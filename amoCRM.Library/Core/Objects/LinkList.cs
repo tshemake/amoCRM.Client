@@ -5,12 +5,15 @@ using Newtonsoft.Json;
 
 namespace amoCRM.Library.Core.Objects
 {
-    public class Links
+    public class LinkList
     {
         /// <summary>
         /// Массив содержащий информацию о текущем запросе.
         /// </summary>
         [JsonProperty(PropertyName = "self")]
-        public SelfLink Self { get; set; }
+        public Link Self { get; set; }
+
+        [JsonProperty(PropertyName = "edit")]
+        public Link Edit { get; set; }
     }
 }

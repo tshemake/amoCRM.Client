@@ -13,10 +13,10 @@ namespace amoCRM.Library.Requests
 {
     public class RequestGetCompanies : Request<ReadOnlyCollection<Company>>
     {
-        public RequestGetCompanies(HttpClient httpClient)
+        public RequestGetCompanies(HttpClient httpClient, ApiUri apiUri)
         {
-            RequestUri = ApiConstants.API_GET_COMPANIES;
             RequestType = RequestType.Company;
+            RequestUri = apiUri.GetUrl(RequestType);
             HttpClient = httpClient;
         }
 

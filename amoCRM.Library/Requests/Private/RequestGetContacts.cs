@@ -14,10 +14,10 @@ namespace amoCRM.Library.Requests.Private
 {
     public class RequestGetContacts : Request<ContactList>
     {
-        public RequestGetContacts(HttpClient httpClient)
+        public RequestGetContacts(HttpClient httpClient, ApiUri apiUri)
         {
-            RequestUri = ApiConstants.PRIVATE_API_GET_CONTACTS;
             RequestType = RequestType.Contact;
+            RequestUri = apiUri.Private.GetUrl(RequestType);
             HttpClient = httpClient;
         }
 
