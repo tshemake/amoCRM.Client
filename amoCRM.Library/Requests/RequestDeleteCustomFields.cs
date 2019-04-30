@@ -14,18 +14,18 @@ using Newtonsoft.Json;
 
 namespace amoCRM.Library.Requests
 {
-    public class RequestAddCustomFields : Request<ReadOnlyCollection<ResponseCustomFieldDto>>
+    public class RequestDeleteCustomFields : Request<ReadOnlyCollection<ResponseCustomFieldDto>>
     {
-        private IEnumerable<RequestAddCustomFieldDto> _fields;
+        private IEnumerable<RequestDeleteCustomFieldDto> _fields;
 
-        public RequestAddCustomFields(HttpClient httpClient, ApiUri apiUri)
+        public RequestDeleteCustomFields(HttpClient httpClient, ApiUri apiUri)
         {
             RequestType = RequestType.CustomField;
             RequestUri = apiUri.GetUrl(RequestType);
             HttpClient = httpClient;
         }
 
-        public async Task<Response<ReadOnlyCollection<ResponseCustomFieldDto>>> PostAsync(IEnumerable<RequestAddCustomFieldDto> fields)
+        public async Task<Response<ReadOnlyCollection<ResponseCustomFieldDto>>> PostAsync(IEnumerable<RequestDeleteCustomFieldDto> fields)
         {
             _fields = fields;
             var response = await SendAsync();
@@ -45,7 +45,7 @@ namespace amoCRM.Library.Requests
         {
             return new StringContent(JsonConvert.SerializeObject(new RequestCustomFieldListDto
             {
-                AddedCustomFields = _fields
+                DeletedCustomFields = _fields
             }), Encoding.UTF8, "application/json");
         }
     }

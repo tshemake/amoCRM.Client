@@ -135,9 +135,15 @@ namespace amoCRM.Library
             return await request.GetAsync();
         }
 
-        public async Task<Response<ReadOnlyCollection<ResponseCustomFieldDto>>> AddCustomFieldsAsync(IEnumerable<RequestCustomFieldDto> fields)
+        public async Task<Response<ReadOnlyCollection<ResponseCustomFieldDto>>> AddCustomFieldsAsync(IEnumerable<RequestAddCustomFieldDto> fields)
         {
             var request = new RequestAddCustomFields(HttpClient, _apiUri);
+            return await request.PostAsync(fields);
+        }
+
+        public async Task<Response<ReadOnlyCollection<ResponseCustomFieldDto>>> DeleteCustomFieldsAsync(IEnumerable<RequestDeleteCustomFieldDto> fields)
+        {
+            var request = new RequestDeleteCustomFields(HttpClient, _apiUri);
             return await request.PostAsync(fields);
         }
 

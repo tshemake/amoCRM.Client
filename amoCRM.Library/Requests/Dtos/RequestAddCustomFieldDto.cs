@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace amoCRM.Library.Requests.Dtos
 {
-    public class RequestCustomFieldDto
+    public class RequestAddCustomFieldDto
     {
         /// <summary>
         /// Название поля.
